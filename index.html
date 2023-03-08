@@ -28,10 +28,99 @@
         <link rel="stylesheet" href="assets/jquery.fancybox.min.css">
         <link rel="stylesheet" href="assets/styles.css">
         <link rel="stylesheet" href="assets/responsive.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
         
+        <style>
+            .toggle-wrap {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .toggle-switch {
+            width: 0;
+            height: 0;
+            visibility: hidden;
+        }
+        .toggle {
+            position: relative;
+            width: 126px;
+            height: 25px;
+            right: 20%;
+            border-radius: 50px;
+            background: #fff ;
+            box-shadow: inset 0 5px 10px rgba(0,0,0,0.4), 
+             inset 0 -5px 10px rgba(255,255,255,0.4);
+            transition: 0.3s ease-in-out;
+        }
+        .toggle:after{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: linear-gradient(180deg, #ffcc89, #d8860b);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            transition: 0.3s ease-in-out;
+        }
+        .toggle i {
+            position: absolute;
+            font-size: 25px;
+            z-index: 1;
+            transition: 0.3s ease-in-out;
+        }
+        .toggle i:first-child {
+            top: 0;
+            left: 0;
+            color: #fff ;
+        }
+        .toggle i:last-child{
+            top: 0;
+            right: 0px;
+            color: #242424 ;
+        }
+
+        .background {
+            position: absolute;
+            width: 100px;
+            height: 100%;
+            z-index: -1;
+            transition: 0.3s ease-in-out;
+        }
+
+        .toggle-switch:checked ~ .text
+        {
+            color: #fff;
+        }
+        .toggle-switch:checked ~ .toggle
+        {
+            background: #242424;
+        }
+        .toggle-switch:checked ~ .toggle:after
+        {
+            transform: translateX(100px);
+            background: linear-gradient(180deg,#777,#3a3a3a);
+        }
+
+        .toggle-switch:checked ~ .toggle i:first-child
+        {
+            color : #7e7e7e;
+        }
         
+        .toggle-switch:checked ~ .toggle i:first-child
+        {
+            color : #fff;
+        }
+       
+        </style>
     </head>
-    <body class="dark-vertion black-bg">
+    <body class="light-vertion black-bg" id="ChangeStyle">
         <!-- Start Loader -->
         <div class="section-loader">
             <div class="loader">
@@ -83,8 +172,18 @@
                                    <a class="nav-link" href="#mh-contact">Contact</a>
                                 </li>
                                 <li class="nav-item">
-                                    
-                                </li>
+                                    <label class="nav-link toggle-wrap" >
+                                        <input type="checkbox" class="toggle-switch" onclick='handleClick(this);'>
+                                        <span class="text"></span>
+                                        <span class="toggle">
+                                            <i class="bi bi-sun"></i>            
+                                            <i class="bi bi-moon"></i>
+                                        </span>
+                                        <span class="text"></span>
+                                        <span class="background"></span>
+                                    </label>
+                                 </li>
+                                
                             </ul>
                         </div>
                     </nav>
@@ -351,25 +450,18 @@
                                 <div class="mh-education-deatils">
                                     <!-- Education Institutes-->
                                     <div class="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                                        <h4>Art & Multimedia From <a href="">Oxford University</a></h4>
-                                        <div class="mh-eduyear">2005-2008</div>
+                                        <h4>Computer Science From <a href="">Insititut Teknologi dan Bisnis Swadharma</a></h4>
+                                        <div class="mh-eduyear">2019 - Present</div>
                                         <p>It is a long established fact that a reader will be distracted by the readable content of a 
                                         page when looking at its layout. The point of using  Lorem Ipsum </p>
                                     </div>                                
                                     <!-- Education Institutes-->
                                     <div class="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
-                                        <h4>Art & Multimedia From <a href="">Oxford University</a></h4>
+                                        <h4>IPA From <a href="">SMA N 18 Jakarta</a></h4>
                                         <div class="mh-eduyear">2005-2008</div>
                                         <p>It is a long established fact that a reader will be distracted by the readable content of a 
                                         page when looking at its layout. The point of using  Lorem Ipsum </p>
                                     </div>                                
-                                    <!-- Education Institutes-->
-                                    <div class="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">
-                                        <h4>Art & Multimedia From <a href="">Oxford University</a></h4>
-                                        <div class="mh-eduyear">2005-2008</div>
-                                        <p>It is a long established fact that a reader will be distracted by the readable content of a 
-                                        page when looking at its layout. The point of using L orem Ipsum </p>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -379,28 +471,29 @@
                                 <div class="mh-experience-deatils">
                                     <!-- Education Institutes-->
                                     <div class="mh-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
-                                        <h4>UI/UX Designer <a href="">IronSketch</a></h4>
-                                        <div class="mh-eduyear">2005-2008</div>
+                                        <h4>Full Stack Dev From <a href="#">PT. Astra Daihatsu Motor</a></h4>
+                                        <div class="mh-eduyear">2021 - 2023</div>
                                         <span>Responsibility :</span>
                                         <ul class="work-responsibility">
-                                            <li><i class="fa fa-circle"></i>Validate CSS</li>
-                                            <li><i class="fa fa-circle"></i>Project Management</li>
+                                            <li><i class="fa fa-circle"></i>Build Web Apps</li>
+                                            <li><i class="fa fa-circle"></i>Build Android Apps</li>
+                                            <li><i class="fa fa-circle"></i>Build Documentation from Apps</li>
                                         </ul>
                                     </div>                                
                                     <!-- Education Institutes-->
                                     <div class="mh-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">
-                                        <h4>Art & Multimedia From <a href="">Oxford University</a></h4>
-                                        <div class="mh-eduyear">2005-2008</div>
+                                        <h4>Human Resource side to IT From <a href="">PT. Sigap Prima Astrea</a></h4>
+                                        <div class="mh-eduyear">2020-2021</div>
                                         <span>Responsibility :</span>
                                         <ul class="work-responsibility">
-                                            <li><i class="fa fa-circle"></i>Validate CSS</li>
-                                            <li><i class="fa fa-circle"></i>Project Management</li>
+                                            <li><i class="fa fa-circle"></i>Build Apps System Information</li>
+                                            <li><i class="fa fa-circle"></i>Prospect Apps to the Management</li>
                                         </ul>
                                     </div>                                
                                     <!-- Education Institutes-->
                                     <div class="mh-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
-                                        <h4>Art & Multimedia From <a href="">Oxford University</a></h4>
-                                        <div class="mh-eduyear">2005-2008</div>
+                                        <h4>Human Resource From <a href="">PT. Sigap Prima Astrea</a></h4>
+                                        <div class="mh-eduyear">2018-2021</div>
                                         <span>Responsibility :</span>
                                         <ul class="work-responsibility">
                                             <li><i class="fa fa-circle"></i>Validate CSS</li>
@@ -773,7 +866,7 @@
                                         </div>
                                         <div class="each-info">
                                             <h4>Phone</h4>
-                                            <a href="callto:(+62)-8788-6511-096">+62 8788 6511 096</a><br>
+                                            <a href="https://api.whatsapp.com/send/?phone=6287886511096&text&type=phone_number&app_absent=0">+62 8788 6511 096</a><br>
                                         </div>
                                     </div>
                                 </div>
@@ -827,7 +920,17 @@
     <!-- Custom Scripts-->
     <script src="assets/map-init.js"></script>
     <script src="assets/custom-scripts.js"></script>
-    
+    <script type="text/Javascript">
+        function handleClick(cb) {
+            const value = document.getElementById("ChangeStyle");
+            cb.value = cb.checked ? 1 : 0;
+                if(cb.value == 1){
+                    value.className = "dark-vertion black-bg"
+                }else{
+                    value.className = "white-vertion black-bg"
+                }
+            };
+    </script>
 
    
 </body>
